@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student Hub — your academic life, organized.">
+  <title>Student Hub | Your Academic Life, Organized</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Student Hub home">
+        <span class="brand-mark">S</span><span>student<span class="brand-light">hub</span></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard"><span class="nav-icon">▦</span> Dashboard</button>
+        <button class="nav-item" data-view="tasks"><span class="nav-icon">✓</span> My Tasks <span class="nav-count" id="navTaskCount">0</span></button>
+        <button class="nav-item" data-view="planner"><span class="nav-icon">▣</span> Study Planner</button>
+        <button class="nav-item" data-view="notes"><span class="nav-icon">▤</span> My Notes</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="focus-card">
+          <div class="focus-icon">✦</div>
+          <strong>Small steps add up.</strong>
+          <p>Stay consistent. Your future self will thank you.</p>
+        </div>
+        <button class="nav-item" id="themeToggle"><span class="nav-icon" id="themeIcon">☾</span> Switch theme</button>
+        <div class="profile">
+          <div class="avatar">SH</div>
+          <div><strong>Student</strong><small>Personal workspace</small></div>
+          <span class="profile-dots">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="pageName">Dashboard</strong></div>
+        <div class="top-actions"><span class="today-label" id="todayLabel"></span><div class="top-avatar">S</div></div>
+      </header>
+
+      <section class="view active" id="dashboardView">
+        <div class="welcome-row">
+          <div><div class="eyebrow">YOUR PERSONAL STUDY SPACE</div><h1>Good to see you<span class="accent">.</span></h1>
+            <p class="muted">A little progress each day adds up to big results.</p></div>
+          <button class="primary-btn" data-open-task>＋ Add a task</button>
+        </div>
+        <div class="hero-card">
+          <div class="hero-copy"><span class="hero-tag">✦ YOUR WEEK, YOUR PACE</span><h2>Make room for<br>what matters.</h2>
+            <p>Plan your priorities, focus on your goals, and make every study session count.</p>
+            <button class="hero-btn" data-view-link="planner">Open study planner <span>→</span></button></div>
+          <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="book book-back"></div><div class="book book-front"><span>FOCUS</span><i>✦</i></div><div class="sparkle">✧</div></div>
+        </div>
+        <div class="section-heading"><div><h2>Your overview</h2><p class="muted">A snapshot of your academic progress</p></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Tasks completed</span><span class="stat-icon purple">✓</span></div><strong id="completedStat">0</strong><small>Keep up the momentum</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Pending tasks</span><span class="stat-icon blue">◷</span></div><strong id="pendingStat">0</strong><small>One step at a time</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Study notes</span><span class="stat-icon amber">▤</span></div><strong id="notesStat">0</strong><small>Ideas worth keeping</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Completion rate</span><span class="stat-icon green">↗</span></div><strong id="rateStat">0%</strong><small>Progress, not perfection</small></article>
+        </div>
+        <div class="dashboard-bottom">
+          <article class="panel"><div class="panel-heading"><div><h3>Upcoming tasks</h3><p class="muted">What needs your attention</p></div><button class="text-btn" data-view-link="tasks">View all →</button></div><div id="dashboardTasks" class="task-list"></div></article>
+          <article class="panel quote-panel"><div class="quote-mark">“</div><blockquote>Success is the sum of small efforts, repeated day in and day out.</blockquote><div class="quote-line"></div><span class="quote-author">ROBERT COLLIER</span><div class="quote-decoration">✳</div></article>
+        </div>
+      </section>
+
+      <section class="view" id="tasksView">
+        <div class="welcome-row"><div><div class="eyebrow">STAY ON TOP OF IT</div><h1>My tasks<span class="accent">.</span></h1><p class="muted">Capture it, prioritize it, get it done.</p></div><button class="primary-btn" data-open-task>＋ Add a task</button></div>
+        <div class="panel"><div class="panel-heading"><div><h3>All tasks</h3><p class="muted">Your personal to-do list</p></div><span class="subtle-pill" id="taskTotal">0 tasks</span></div><div class="task-filters"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="pending">Pending</button><button class="filter-btn" data-filter="completed">Completed</button></div><div id="allTasks" class="task-list"></div></div>
+      </section>
+
+      <section class="view" id="plannerView">
+        <div class="welcome-row"><div><div class="eyebrow">MAKE TIME FOR LEARNING</div><h1>Study planner<span class="accent">.</span></h1><p class="muted">Give your goals a place in your day.</p></div></div>
+        <div class="planner-grid"><article class="panel"><div class="panel-heading"><div><h3>Plan a study session</h3><p class="muted">Add a subject and a time block</p></div></div>
+          <form id="sessionForm" class="stack-form"><label>Subject or topic<input id="sessionSubject" placeholder="e.g. Data Structures" required maxlength="60"></label><div class="form-row"><label>Date<input id="sessionDate" type="date" required></label><label>Start time<input id="sessionTime" type="time" required></label></div><label>Duration<select id="sessionDuration"><option>30 minutes</option><option selected>1 hour</option><option>1.5 hours</option><option>2 hours</option></select></label><button class="primary-btn" type="submit">＋ Add study session</button></form>
+        </article><article class="panel"><div class="panel-heading"><div><h3>Your study sessions</h3><p class="muted">Your upcoming focus blocks</p></div></div><div id="sessionsList" class="session-list"></div></article></div>
+      </section>
+
+      <section class="view" id="notesView">
+        <div class="welcome-row"><div><div class="eyebrow">KEEP YOUR IDEAS CLOSE</div><h1>My notes<span class="accent">.</span></h1><p class="muted">A home for thoughts, reminders and discoveries.</p></div></div>
+        <div class="notes-layout"><form id="noteForm" class="panel stack-form"><div class="panel-heading"><div><h3>Create a note</h3><p class="muted">Save something useful</p></div></div><label>Note title<input id="noteTitle" placeholder="Give your note a title" required maxlength="70"></label><label>Your note<textarea id="noteBody" rows="6" placeholder="Write your thoughts here..." required maxlength="1500"></textarea></label><button class="primary-btn" type="submit">Save note</button></form><div><div class="notes-heading"><h3>Saved notes</h3><span class="subtle-pill" id="noteTotal">0 notes</span></div><div id="notesGrid" class="notes-grid"></div></div></div>
+      </section>
+      <footer>Made for focused minds. <span>STUDENT HUB</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="taskModal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-heading"><div><div class="eyebrow">MAKE IT HAPPEN</div><h2 id="modalTitle">Add a task</h2></div><button class="close-btn" id="closeModal" aria-label="Close">×</button></div>
+    <form id="taskForm" class="stack-form"><label>Task title<input id="taskTitle" placeholder="e.g. Complete DLD assignment" required maxlength="90"></label><div class="form-row"><label>Due date<input id="taskDate" type="date"></label><label>Priority<select id="taskPriority"><option>Low</option><option selected>Medium</option><option>High</option></select></label></div><label>Category<select id="taskCategory"><option>Study</option><option>Assignment</option><option>Personal</option><option>Exam preparation</option></select></label><button class="primary-btn" type="submit">Add task</button></form>
+  </div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
